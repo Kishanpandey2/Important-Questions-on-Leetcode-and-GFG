@@ -1,0 +1,29 @@
+class Solution
+{
+    // root : the root Node of the given BST
+    // target : the target sum
+    public int isPairPresent(Node root, int target)
+    {
+        // Write your code here
+        Set<Integer>st = new HashSet<>() ;
+        boolean result = solve(root, target , st) ;
+        return result ?1:0 ;
+        
+    }
+    public boolean solve(Node root , int sum , Set<Integer>st)
+    {
+        if(root == null)
+        return false;
+        
+        if(solve(root.left,sum,st)==true)
+        return true;
+        
+        if(st.contains(sum-root.data))
+        return true;
+        
+        st.add(root.data) ;
+        
+        return solve(root.right,sum,st);
+        
+    }
+}
