@@ -1,0 +1,23 @@
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        Set<Integer>st = new HashSet<>() ;
+        boolean result = solve(root, k , st) ;
+        return result ;
+    }
+    public boolean solve(TreeNode root , int sum , Set<Integer>st)
+    {
+        if(root == null)
+        return false;
+        
+        if(solve(root.left,sum,st)==true)
+        return true;
+        
+        if(st.contains(sum-root.val))
+        return true;
+        
+        st.add(root.val) ;
+        
+        return solve(root.right,sum,st);
+        
+    }
+}
